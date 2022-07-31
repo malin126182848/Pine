@@ -1,0 +1,11 @@
+BasedOnStyle: Microsoft
+
+AccessModifierOffset: -4
+AllowAllConstructorInitializersOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BreakConstructorInitializersBeforeComma: true
+BinPackParameters: false
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+DerivePointerAlignment: true
+NamespaceIndentation: All
