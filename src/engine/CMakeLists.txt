@@ -8,18 +8,18 @@ set(prj_header
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Log.h
   )
 
-add_library(engine SHARED
+add_library(${PROJECT_NAME} SHARED
   ${prj_header}
-  Application.cpp
-  Log.cpp
+  src/Application.cpp
+  src/Log.cpp
   )
 
-target_link_libraries(engine 
-  PRIVATE
+target_link_libraries(${PROJECT_NAME} 
+  PUBLIC 
   spdlog::spdlog
   )
 
-target_include_directories(engine 
+target_include_directories(${PROJECT_NAME} 
   PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   )

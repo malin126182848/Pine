@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Log.h"
 
 #include <iostream>
 #include <memory>
@@ -12,8 +13,11 @@ public:
 
 int main(int argc, char** argv)
 {
-    int a = 0;
-    int c = a + 1;
+    PN_LOG_DEBUG("Initialized log!");
+    int a = 34;
+    PN_LOG_APP_INFO("Hello, var = {0}", a);
+    
+    
     std::unique_ptr<SandboxApp> app = std::make_unique<SandboxApp>();
     app->run();
     return 0;
