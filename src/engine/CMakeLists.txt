@@ -17,6 +17,9 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME} 
   PUBLIC 
   spdlog::spdlog
+  glad_gl_core_45
+  glfw
+  OpenGL::GL
   )
 
 target_include_directories(${PROJECT_NAME} 
