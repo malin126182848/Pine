@@ -1,6 +1,5 @@
 #include "Application.h"
 
-#include <iostream>
 
 #include <glad/gl.h>
 #define GLFW_INCLUDE_NONE
@@ -18,6 +17,7 @@ namespace Engine
 
     void Application::run()
     {
+        std::string a;
         std::cout << "is app run: hello world" << std::endl;
         runWindow();
     }
