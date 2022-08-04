@@ -6,7 +6,7 @@
 #include <filesystem>
 #include <iostream>
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <string>
 #include <windows.h>
 std::string getexepath()
@@ -30,7 +30,7 @@ void Log::init()
     currentPath += "/logs/Pine.log";
     std::vector<spdlog::sink_ptr> logSinks;
     logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
-    logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(currentPath.native(), true));
+    logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(currentPath.string(), true));
 
     logSinks[0]->set_pattern("%^[%T] %n: %v%$");
     logSinks[1]->set_pattern("[%T] [%l] %n: %v");

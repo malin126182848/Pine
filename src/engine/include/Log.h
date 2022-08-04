@@ -3,9 +3,10 @@
 
 #include <memory>
 #include <string>
+#include "globel.h"
 
 #include "spdlog/spdlog.h"
-class Log
+class ENGINE_API Log
 {
 public:
     
