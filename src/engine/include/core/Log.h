@@ -1,6 +1,7 @@
 #ifndef PINE_LOG_H
 #define PINE_LOG_H
 
+#include "globel.h"
 #include "spdlog/spdlog.h"
 
 namespace Engine

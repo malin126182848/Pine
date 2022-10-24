@@ -10,7 +10,6 @@ set(prj_header
 
 add_library(${PROJECT_NAME} SHARED
   ${prj_header}
-  src/pch.cpp
   src/core/Application.cpp
   src/core/Log.cpp
   src/math/linmath.h
@@ -37,4 +36,4 @@ target_include_directories(${PROJECT_NAME}
 target_precompile_headers(${PROJECT_NAME}
   PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/pch.h
-)
+  )
