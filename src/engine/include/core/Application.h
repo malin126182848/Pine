@@ -1,15 +1,18 @@
-#pragma once
+#ifndef PINE_APPLICATION_H
+#define PINE_APPLICATION_H
 
 #include "globel.h"
 
-namespace Engine
-{
-    class ENGINE_API Application
-    {
-    public:
-        Application();
-        virtual ~Application() = default;
+NAMESPACE_BEGIN(Engine)
 
-        void run();
-    };
-} // namespace Engine
+class ENGINE_API Application
+{
+public:
+    Application();
+    virtual ~Application() = default;
+
+    void run();
+};
+
+NAMESPACE_END(Engine)
+#endif

@@ -7,14 +7,12 @@
 namespace Engine
 {
 #ifdef _WIN32
-#include <windows.h>
     std::string getexepath()
     {
         char result[FILENAME_MAX];
         return std::string(result, GetModuleFileName(NULL, result, FILENAME_MAX));
     }
 #else
-#include <unistd.h>
     std::string getexepath()
     {
         char result[FILENAME_MAX] = {0};

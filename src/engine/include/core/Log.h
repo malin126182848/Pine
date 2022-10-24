@@ -4,41 +4,40 @@
 #include "globel.h"
 #include "spdlog/spdlog.h"
 
-namespace Engine
+NAMESPACE_BEGIN(Engine)
+class ENGINE_API Log
 {
-    class ENGINE_API Log
+public:
+    static Log* getInstance()
     {
-    public:
-        static Log* getInstance()
-        {
-            static Log logger;
-            return &logger;
-        }
+        static Log logger;
+        return &logger;
+    }
 
-        std::shared_ptr<spdlog::logger> getCoreLogger()
-        {
-            return m_coreLogger;
-        }
+    std::shared_ptr<spdlog::logger> getCoreLogger()
+    {
+        return m_coreLogger;
+    }
 
-        std::shared_ptr<spdlog::logger> getClientLogger()
-        {
-            return m_clientLogger;
-        }
+    std::shared_ptr<spdlog::logger> getClientLogger()
+    {
+        return m_clientLogger;
+    }
 
-    private:
-        explicit Log();
-        ~Log() = default;
-        Log(const Log&) = delete;
-        Log& operator=(const Log&) = delete;
+private:
+    explicit Log();
+    ~Log() = default;
+    Log(const Log&) = delete;
+    Log& operator=(const Log&) = delete;
 
-        void init();
+    void init();
 
-    private:
-        std::shared_ptr<spdlog::logger> m_coreLogger;
-        std::shared_ptr<spdlog::logger> m_clientLogger;
-    };
+private:
+    std::shared_ptr<spdlog::logger> m_coreLogger;
+    std::shared_ptr<spdlog::logger> m_clientLogger;
+};
 
-} // namespace Engine
+NAMESPACE_END(Engine)
 
 #define PN_LOG_TRACE(...)                                                                                              \
     SPDLOG_LOGGER_CALL(Engine::Log::getInstance()->getCoreLogger().get(), spdlog::level::trace, __VA_ARGS__)
