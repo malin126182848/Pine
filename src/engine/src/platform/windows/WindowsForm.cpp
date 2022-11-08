@@ -19,6 +19,7 @@ WindowsForm::WindowsForm(const WindowProps& props)
 
 WindowsForm::~WindowsForm()
 {
+    shutdown();
 }
 
 void WindowsForm::init(const WindowProps& props)
@@ -48,6 +49,7 @@ void WindowsForm::init(const WindowProps& props)
 
 void WindowsForm::shutdown()
 {
+    glfwDestroyWindow(m_Window);
 }
 
 void WindowsForm::onUpdate()
