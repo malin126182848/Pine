@@ -6,6 +6,8 @@ set(prj_header
   ${CMAKE_CURRENT_SOURCE_DIR}/include/core/globel.h
   ${CMAKE_CURRENT_SOURCE_DIR}/include/core/Application.h
   ${CMAKE_CURRENT_SOURCE_DIR}/include/core/Log.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/core/Window.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/events/Event.h
   )
 
 add_library(${PROJECT_NAME} SHARED
@@ -13,6 +15,9 @@ add_library(${PROJECT_NAME} SHARED
   src/core/Application.cpp
   src/core/Log.cpp
   src/math/linmath.h
+
+  src/platform/windows/WindowsForm.h
+  src/platform/windows/WindowsForm.cpp
   )
 
 target_link_libraries(${PROJECT_NAME} 
