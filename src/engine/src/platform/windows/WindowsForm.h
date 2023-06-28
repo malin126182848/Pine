@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "globel.h"
 
-#include <GLFW/glfw3.h>
+struct GLFWwindow;
 
 NAMESPACE_BEGIN(Engine);
 
@@ -14,6 +14,7 @@ public:
     virtual ~WindowsForm();
 
     void onUpdate() override;
+    bool isRunning() override;
 
     inline unsigned int getWidth() const override
     {

@@ -1,6 +1,8 @@
 #include "Log.h"
 #include "pch.h"
 
+#include <spdlog/spdlog.h>
+#include <spdlog/logger.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
@@ -21,6 +23,32 @@ namespace Engine
     }
 #endif
 
+    std::shared_ptr<spdlog::logger> setup_logger(std::string logger_name, std::vector<spdlog::sink_ptr> sinks)
+    {
+        auto logger = spdlog::get(logger_name);
+        if (!logger)
+        {
+            if (sinks.size() > 0)
+            {
+                logger = std::make_shared<spdlog::logger>(logger_name, std::begin(sinks), std::end(sinks));
+                spdlog::register_logger(logger);
+            }
+            else
+            {
+                logger = spdlog::stdout_color_mt(logger_name);
+            }
+        }
+        logger->set_level(spdlog::level::trace);
+        logger->flush_on(spdlog::level::trace);
+        return logger;
+    }
+
+    Log* Log::getInstance()
+    {
+        static auto logger = new Log();
+        return logger;
+    }
+
     Log::Log()
     {
         init();
@@ -37,15 +65,18 @@ namespace Engine
         logSinks[0]->set_pattern("%^[%T] %n: %v%$");
         logSinks[1]->set_pattern("[%T] [%l] %n: %v");
 
-        m_coreLogger = std::make_shared<spdlog::logger>("PINE", begin(logSinks), end(logSinks));
-        spdlog::register_logger(m_coreLogger);
-        m_coreLogger->set_level(spdlog::level::trace);
-        m_coreLogger->flush_on(spdlog::level::trace);
+        m_coreLogger = setup_logger("PINE", logSinks);
+        m_clientLogger = setup_logger("APP", logSinks);
+    }
 
-        m_clientLogger = std::make_shared<spdlog::logger>("APP", begin(logSinks), end(logSinks));
-        spdlog::register_logger(m_clientLogger);
-        m_clientLogger->set_level(spdlog::level::trace);
-        m_clientLogger->flush_on(spdlog::level::trace);
+    spdlog::logger* Log::getCoreLogger()
+    {
+        return m_coreLogger.get();
+    }
+
+    spdlog::logger* Log::getClientLogger()
+    {
+        return m_clientLogger.get();
     }
 
 } // namespace Engine

@@ -15,14 +15,17 @@ add_library(${PROJECT_NAME} SHARED
   src/core/Application.cpp
   src/core/Log.cpp
   src/math/linmath.h
-
   src/platform/windows/WindowsForm.h
   src/platform/windows/WindowsForm.cpp
   )
 
+find_package(OpenGL REQUIRED)
+glad_add_library(glad_gl_core_45 REPRODUCIBLE API gl:core=4.5)
+
 target_link_libraries(${PROJECT_NAME} 
-  PUBLIC 
+  PUBLIC
   spdlog::spdlog
+  PRIVATE 
   glad_gl_core_45
   glfw
   OpenGL::GL
@@ -31,11 +34,16 @@ target_link_libraries(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} 
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src/math/
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/
   PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/
   ${CMAKE_CURRENT_SOURCE_DIR}/include/core
   ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
   ${CMAKE_CURRENT_SOURCE_DIR}/include/events
+  )
+
+target_compile_definitions(${PROJECT_NAME} 
+  PRIVATE 
+  GLFW_INCLUDE_NONE
   )
 
 target_precompile_headers(${PROJECT_NAME}

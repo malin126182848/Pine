@@ -19,13 +19,15 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 include(FetchContent)
 FetchContent_Declare(
   spdlog
-  GIT_REPOSITORY https://github.com/gabime/spdlog.git
-  GIT_TAG        v1.10.0
+  URL file://${CMAKE_SOURCE_DIR}/3rd/spdlog-1.11.0.zip
+  URL_HASH MD5=cd620e0f103737a122a3b6539bd0a57a
+  DOWNLOAD_EXTRACT_TIMESTAMP true
   )
 FetchContent_Declare(
   glfw
-  GIT_REPOSITORY https://github.com/glfw/glfw.git
-  GIT_TAG        3.3.8
+  URL file://${CMAKE_SOURCE_DIR}/3rd/glfw-3.3.8.zip
+  URL_HASH MD5=b06789a44e82a8a3ebd2e0301fb0484a
+  DOWNLOAD_EXTRACT_TIMESTAMP true
   )
 set(GLFW_BUILD_EXAMPLES OFF)
 set(GLFW_BUILD_TESTS OFF)
@@ -33,8 +35,9 @@ set(GLFW_BUILD_DOCS OFF)
 set(GLFW_INSTALL OFF)
 FetchContent_Declare(
   glad2
-  GIT_REPOSITORY https://github.com/Dav1dde/glad.git
-  GIT_TAG        glad2
+  URL file://${CMAKE_SOURCE_DIR}/3rd/glad-2.0.4.zip
+  URL_HASH MD5=4929d9825531a70fb56a8a7e5440a940
+  DOWNLOAD_EXTRACT_TIMESTAMP true
   SOURCE_SUBDIR  cmake
   )
 FetchContent_MakeAvailable(
@@ -42,8 +45,6 @@ FetchContent_MakeAvailable(
   glfw
   glad2
   )
-find_package(OpenGL REQUIRED)
-glad_add_library(glad_gl_core_45 REPRODUCIBLE API gl:core=4.5)
 
 # add subdirs cmakelists.txt
 add_subdirectory(src/engine)

@@ -21,6 +21,7 @@ public:
     virtual ~IWindow() = default;
 
     virtual void onUpdate() = 0;
+    virtual bool isRunning() = 0;
 
     virtual unsigned int getWidth() const = 0;
     virtual unsigned int getHeight() const = 0;
