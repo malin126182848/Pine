@@ -118,14 +118,14 @@ public:
     template <typename Functor, typename T = std::remove_const_t<std::remove_reference_t<typename function_traits<Functor>::template arg<0>>>>
     requires requires(Functor&& func, T&& t) {
         requires std::convertible_to<T&, Event&>;
-        requires std::invocable<decltype(std::remove_reference_t<T>::getStaticType)>;
+        requires std::invocable<decltype(T::getStaticType)>;
         { func(t) } -> std::same_as<bool>;
     }
     bool dispatch(Functor&& func)
     {
-        if (m_Event.getEventType() == std::remove_reference_t<T>::getStaticType())
+        if (m_Event.getEventType() == T::getStaticType())
         {
-            m_Event.m_Handled = func(*(T*)&m_Event);
+            m_Event.m_Handled = func(static_cast <T&>(m_Event));
             return true;
         }
         return false;

@@ -25,7 +25,7 @@ public:
         return 1;
     }
 
-    inline void setEventCallback(const EventCallbackFn& callback) override
+    inline void setEventCallback(const IWindow::EventCallbackFn& callback) override
     {
         m_Data.eventCallback = callback;
     }
@@ -47,7 +47,7 @@ private:
         unsigned int height = 0;
         bool VSync = false;
 
-        EventCallbackFn eventCallback;
+        IWindow::EventCallbackFn eventCallback;
     };
 
     WindowData m_Data;
