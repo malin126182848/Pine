@@ -19,16 +19,16 @@ add_library(${PROJECT_NAME} SHARED
   src/platform/windows/WindowsForm.cpp
   )
 
-find_package(OpenGL REQUIRED)
-glad_add_library(glad_gl_core_45 REPRODUCIBLE API gl:core=4.5)
+find_package(spdlog REQUIRED)
+find_package(glfw REQUIRED)
+find_package(glad REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} 
   PUBLIC
   spdlog::spdlog
   PRIVATE 
-  glad_gl_core_45
+  glad
   glfw
-  OpenGL::GL
   )
 
 target_include_directories(${PROJECT_NAME} 

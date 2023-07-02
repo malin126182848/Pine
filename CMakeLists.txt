@@ -16,35 +16,7 @@ add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # 3rdParty 
-include(FetchContent)
-FetchContent_Declare(
-  spdlog
-  URL file://${CMAKE_SOURCE_DIR}/3rd/spdlog-1.11.0.zip
-  URL_HASH MD5=cd620e0f103737a122a3b6539bd0a57a
-  DOWNLOAD_EXTRACT_TIMESTAMP true
-  )
-FetchContent_Declare(
-  glfw
-  URL file://${CMAKE_SOURCE_DIR}/3rd/glfw-3.3.8.zip
-  URL_HASH MD5=b06789a44e82a8a3ebd2e0301fb0484a
-  DOWNLOAD_EXTRACT_TIMESTAMP true
-  )
-set(GLFW_BUILD_EXAMPLES OFF)
-set(GLFW_BUILD_TESTS OFF)
-set(GLFW_BUILD_DOCS OFF)
-set(GLFW_INSTALL OFF)
-FetchContent_Declare(
-  glad2
-  URL file://${CMAKE_SOURCE_DIR}/3rd/glad-2.0.4.zip
-  URL_HASH MD5=4929d9825531a70fb56a8a7e5440a940
-  DOWNLOAD_EXTRACT_TIMESTAMP true
-  SOURCE_SUBDIR  cmake
-  )
-FetchContent_MakeAvailable(
-  spdlog
-  glfw
-  glad2
-  )
+include(3rd/Load3rd.cmake)
 
 # add subdirs cmakelists.txt
 add_subdirectory(src/engine)
